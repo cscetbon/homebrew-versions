@@ -1,5 +1,5 @@
 class Cassandra21 < Formula
-  desc "Eventually consistent, distributed key-value store"
+  desc "Eventually consistent distributed key-value store"
   homepage "https://cassandra.apache.org"
   url "https://www.apache.org/dyn/closer.cgi?path=/cassandra/2.1.8/apache-cassandra-2.1.8-bin.tar.gz"
   mirror "https://archive.apache.org/dist/cassandra/2.1.8/apache-cassandra-2.1.8-bin.tar.gz"
@@ -82,9 +82,10 @@ class Cassandra21 < Formula
     libexec.install Dir["lib/*.jar"]
 
     share.install [libexec+"bin/cassandra.in.sh", libexec+"bin/stop-server"]
-    inreplace Dir["#{libexec}/bin/cassandra*", "#{libexec}/bin/debug-cql", "#{libexec}/bin/nodetool", "#{libexec}/bin/sstable*"],
-              /`dirname "?\$0"?`\/cassandra.in.sh/,
-              "#{share}/cassandra.in.sh"
+    inreplace Dir["#{libexec}/bin/cassandra*", "#{libexec}/bin/debug-cql", 
+                  "#{libexec}/bin/nodetool", "#{libexec}/bin/sstable*"],
+                  %r{`dirname "?\$0"?`\/cassandra.in.sh},
+                  "#{share}/cassandra.in.sh"
 
     bin.write_exec_script Dir["#{libexec}/bin/*"]
     rm bin/"cqlsh" # Remove existing exec script
