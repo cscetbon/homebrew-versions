@@ -5,12 +5,6 @@ class Cassandra21 < Formula
   mirror "https://archive.apache.org/dist/cassandra/2.1.8/apache-cassandra-2.1.8-bin.tar.gz"
   sha256 "3a0cc64efd529ffdc1600f6b3ad1946af85cc01544e2b469499aa81b10b722f5"
 
-  bottle do
-    sha256 "c269d7d38965af4413351c296d8573fdd93594a9d4abf02a5c69ede3f6f07565" => :yosemite
-    sha256 "e8cf539dd5ed31edc0c5e174b6b11e5c34e731f48706277ac6d5ff286af16e41" => :mavericks
-    sha256 "f1c022d18a838e037e565584eb1f72780be8128f56b26ebf25ac2ff733b0d503" => :mountain_lion
-  end
-
   depends_on :python if MacOS.version <= :snow_leopard
 
   # Only Yosemite has new enough setuptools for successful compile of the below deps.
